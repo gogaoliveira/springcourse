@@ -1,15 +1,28 @@
 package com.douglasoliveira.cursosb.resources;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.douglasoliveira.cursosb.domain.Categoria;
 
 @RestController
 @RequestMapping(value = "/categories")
 public class CategoryResource {
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String listar() {
-		return "REst ok";
+	public List<Categoria> listar() {
+		
+		Categoria cat1 = new Categoria(1, "Informatica");
+		Categoria cat2 = new Categoria(2, "escritorio");
+		
+		List<Categoria> lista = new ArrayList<>();
+		lista.add(cat1);
+		lista.add(cat2);
+		
+		return lista;
 	}
 }
