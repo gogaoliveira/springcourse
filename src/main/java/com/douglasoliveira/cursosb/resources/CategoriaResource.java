@@ -11,7 +11,7 @@ import com.douglasoliveira.cursosb.domain.Categoria;
 import com.douglasoliveira.cursosb.services.CategoriaService;
 
 @RestController
-@RequestMapping(value = "/categories")
+@RequestMapping(value = "/categorias")
 public class CategoriaResource {
 	
 	@Autowired
