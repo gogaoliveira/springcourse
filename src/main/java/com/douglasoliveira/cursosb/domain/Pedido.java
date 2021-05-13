@@ -143,13 +143,13 @@ public class Pedido implements Serializable {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		StringBuilder builder = new StringBuilder();
 		builder.append("Pedido numero: ");
-		builder.append(getId());
-		builder.append(", Instante: ");
-		builder.append(sdf.format(getInstant()));
-		builder.append(", Cliente: ");
-		builder.append(getCliente().getNome());
-		builder.append(", Situação do Pagamento: ");
-		builder.append(getPagamento().getEstado().getDescricao());
+		builder.append(getId()+"\n");
+		builder.append("Instante: ");
+		builder.append(sdf.format(getInstant())+"\n");
+		builder.append("Cliente: ");
+		builder.append(getCliente().getNome()+"\n");
+		builder.append("Situação do Pagamento: ");
+		builder.append(getPagamento().getEstado().getDescricao()+"\n");
 		builder.append("\nDetalhes\n");
 		for (ItemPedido ip : getItens()) {
 			builder.append(ip.toString());
