@@ -10,7 +10,6 @@ import com.douglasoliveira.cursosb.domain.ItemPedido;
 import com.douglasoliveira.cursosb.domain.PagamentoComBoleto;
 import com.douglasoliveira.cursosb.domain.Pedido;
 import com.douglasoliveira.cursosb.domain.enums.EstadoPagamento;
-import com.douglasoliveira.cursosb.repositories.ClienteRepository;
 import com.douglasoliveira.cursosb.repositories.ItemPedidoRepository;
 import com.douglasoliveira.cursosb.repositories.PagamentoRepository;
 import com.douglasoliveira.cursosb.repositories.PedidoRepository;
@@ -36,6 +35,9 @@ public class PedidoService {
 	
 	@Autowired
 	private ClienteService clienteService;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	
 	public Pedido find(Integer id) {
@@ -63,7 +65,7 @@ public class PedidoService {
 			ip.setPedido(obj);
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
-		System.out.println(obj);
+		emailService.sendOrderConfirmationEmail(obj);
 		return obj;
 	}
 
