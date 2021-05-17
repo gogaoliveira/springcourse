@@ -46,13 +46,13 @@ public class ClienteService {
 	private S3Service s3Service;
 	
 	@Autowired
-	private ClienteService clienteService;
-	
-	@Autowired
 	private ImageService imageService;
 	
 	@Value("${img.prefix.client.profile}")
 	private String prefix;
+	
+	@Value("${img.profile.size}")
+	private Integer size;
 	
 	public Cliente find(Integer id) {
 		
@@ -130,6 +130,10 @@ public class ClienteService {
 		}
 		
 		BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
+		jpgImage =  imageService.cropSquare(jpgImage);
+		jpgImage = imageService.resize(jpgImage, size);
+		
+		
 		String fileNameString = prefix + user.getId() + ".jpg";
 		
 		return s3Service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileNameString, "image");
